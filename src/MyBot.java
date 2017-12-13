@@ -22,7 +22,7 @@ public class MyBot extends TelegramLongPollingBot {
             }
 
 
-            if (isNotAllowedMessage(update)) {
+            if (!isReplyToMessage(update) && isNotAllowedMessage(update)) {
                 DeleteMessage deleteMessage = new DeleteMessage();
                 deleteMessage.setChatId(String.valueOf(update.getMessage().getChat().getId()));
                 deleteMessage.setMessageId(update.getMessage().getMessageId());
@@ -78,6 +78,10 @@ public class MyBot extends TelegramLongPollingBot {
                 return true;
         }
         return false;
+    }
+
+    private boolean isReplyToMessage(Update update) {
+        return update.getMessage().getReplyToMessage() != null;
     }
 
     @Override
