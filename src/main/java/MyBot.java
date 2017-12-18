@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MyBot extends TelegramLongPollingBot {
     private static final String[] filters = {"http://", "www.", "https://"};
-    private static final String[] allowedUserNames = {"ibrahimGolshani"};
+    private static final String[] allowedUserNames = {"ibrahimGolshani","Najmeddini","s_maryam_ghasemi","Behshadmousavii","Rosahosseini","Matin_Shg","Royaros","Maarrjjaannnnn"};
     private static final String groupLink = "https://t.me/joinchat/AAAAAERRN6DmKseWKBVIHQ";
 
     @Override
@@ -17,10 +17,9 @@ public class MyBot extends TelegramLongPollingBot {
         if (update.hasMessage()) {
             // Set variables
             for (int i = 0; i < allowedUserNames.length; ++i) {
-                if (update.getMessage().getFrom().getUserName().equals(allowedUserNames[i]))
+                if ( update.getMessage().getFrom().getUserName()!= null && update.getMessage().getFrom().getUserName().equals(allowedUserNames[i]))
                     return;
             }
-
 
             if (!isReplyToMessage(update) && isNotAllowedMessage(update)) {
                 DeleteMessage deleteMessage = new DeleteMessage();
